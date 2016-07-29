@@ -36,7 +36,7 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :talkin, Talkin.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
+  username: "postgresql",
   password: "pass",
   database: "talkin_dev",
   hostname: "db",
