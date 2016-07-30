@@ -6,6 +6,7 @@ services:
      - "4000:4000"
     volumes:
      - .:/home/app
+     - /home/rl1/phoenix_examples:/home/app/phoenix_examples
     depends_on:
      - db
   db:
