@@ -11,6 +11,8 @@ services:
      - db
   db:
     image: postgres
+    ports:
+      - "6000:5432"
     volumes:
      - /talkin/db/etc/postgresql:/etc/postgresql
      - /talkin/db/var/log:/var/log/postgresql

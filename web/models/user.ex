@@ -16,6 +16,6 @@ defmodule Talkin.User do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:uid, :name, :oauth_token, :oauth_expires_at])
-    |> validate_required([:uid, :name, :oauth_token, :oauth_expires_at])
+    |> validate_required([:uid, :name, :oauth_token])
   end
 end

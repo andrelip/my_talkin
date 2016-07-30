@@ -19,7 +19,7 @@ defmodule Talkin.Mixfile do
   def application do
     [mod: {Talkin, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpotion]]
+                    :phoenix_ecto, :postgrex, :httpotion, :oauth2]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,7 +38,8 @@ defmodule Talkin.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:httpotion, "~> 3.0.0"}]
+     {:httpotion, "~> 3.0.0"},
+     {:oauth2, "~> 0.6"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

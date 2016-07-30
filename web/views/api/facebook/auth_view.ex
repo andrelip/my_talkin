@@ -1,8 +1,8 @@
 defmodule Talkin.API.Facebook.AuthView do
   use Talkin.Web, :view
 
-  def render("login.json", %{access_token: access_token}) do
-    access_token
-    |> Poison.encode!
+  def render("login.json", user) do
+    %{id: user.id,
+      name: user.name}
   end
 end
