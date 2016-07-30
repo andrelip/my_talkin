@@ -10,7 +10,7 @@ class ChannelList {
     socket.onError( ev => console.log("ERROR", ev) )
     socket.onClose( e => console.log("CLOSE", e))
 
-    var chan = socket.channel("users:lobby", {})
+    var chan = socket.channel("users:EpVZFJhM0VGRXovc", {})
     chan.join()
         .receive("ignore", () => console.log("auth error"))
         .receive("ok", () => console.log("join ok"))
