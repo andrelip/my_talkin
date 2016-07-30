@@ -2,6 +2,7 @@ defmodule Talkin.API.Facebook.AuthController do
   use Talkin.Web, :controller
 
   alias Talkin.User
+  alias Talkin.UserSession
   require IEx
 
   def login(conn, %{"access_token" => access_token}) do
@@ -55,11 +56,21 @@ defmodule Talkin.API.Facebook.AuthController do
     end
   end
 
+  defp create_session(conn, user) do
+    %{params: %{"lat" => lat, "long" => long}} = conn
+    changeset = UserSession.changeset(%UserSession{},
+                            %{"user_id" => user.id,
+                              "location" => Geo.WKT.decode("POINT(#{lat} #{long})")})
+    |> Repo.insert
+    conn
+  end
+
   defp response({:error, _changeset}, _conn) do
   end
 
   defp response({_, user}, conn) do
     conn
+    |> create_session(user)
     |> render("login.json", user)
   end
 end

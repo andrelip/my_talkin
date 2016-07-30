@@ -15,7 +15,7 @@ defmodule Talkin.Router do
 
   scope "/api", Talkin do
     pipe_through :api
-    get "/facebook/login/:access_token", API.Facebook.AuthController, :login
+    post "/facebook/login", API.Facebook.AuthController, :login
   end
 
   # Other scopes may use custom stacks.
