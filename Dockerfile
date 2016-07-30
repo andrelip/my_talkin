@@ -33,7 +33,7 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.3/install.sh
 
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
-RUN mix local.rebar --force
+RUN mix local.rebar --force && mix local.hex --force
 #
 #
 
