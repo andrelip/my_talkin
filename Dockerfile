@@ -44,6 +44,7 @@ ADD mix.lock /home/app/mix.lock
 RUN echo Y | mix deps.get -y
 ADD . /home/app
 RUN mix compile
+RUN npm install
 #
 
 # Use baseimage-docker's init system.
