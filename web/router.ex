@@ -13,10 +13,9 @@ defmodule Talkin.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", Talkin do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", ChatController, :index
+  scope "/api", Talkin do
+    pipe_through :api
+    get "/facebook/login/:access_token", API.Facebook.AuthController, :login
   end
 
   # Other scopes may use custom stacks.
