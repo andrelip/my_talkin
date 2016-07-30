@@ -16,4 +16,8 @@ defmodule Talkin.RoomTest do
     changeset = Room.changeset(%Room{}, @invalid_attrs)
     refute changeset.valid?
   end
+
+  test "list all rooms in a range" do
+    assert Room.list == []
+  end
 end

@@ -1,6 +1,7 @@
 defmodule Talkin.User do
   use Talkin.Web, :model
-
+  alias Talkin.Repo
+  
   schema "users" do
     field :uid, :string
     field :name, :string
@@ -19,6 +20,10 @@ defmodule Talkin.User do
     |> cast(params, [:uid, :name, :oauth_token, :oauth_expires_at])
     |> validate_required([:uid, :name, :oauth_token])
     |> put_change(:token, random_token)
+  end
+
+  def list do
+    Repo.all(Talkin.User)
   end
 
   defp random_token do

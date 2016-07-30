@@ -3,7 +3,7 @@ defmodule Talkin.UserSessionTest do
 
   alias Talkin.UserSession
 
-  @valid_attrs %{}
+  @valid_attrs %{user_id: 1, location: Geo.WKT.decode("POINT(30 -90)")}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

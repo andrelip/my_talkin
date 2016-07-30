@@ -15,4 +15,8 @@ defmodule Talkin.UserTest do
     changeset = User.changeset(%User{}, @invalid_attrs)
     refute changeset.valid?
   end
+
+  test "list all the users in a range" do
+    assert User.list == []
+  end
 end
