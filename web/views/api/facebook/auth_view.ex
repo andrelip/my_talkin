@@ -2,7 +2,7 @@ defmodule Talkin.API.Facebook.AuthView do
   use Talkin.Web, :view
 
   def render("login.json", user) do
-    %{id: user.id,
+    %{api_token: user.token,
       name: user.name}
   end
 end
