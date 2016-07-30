@@ -33,6 +33,7 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.3/install.sh
 
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+RUN mix local.rebar --force
 #
 #
 
@@ -42,10 +43,12 @@ ADD mix.exs /home/app/mix.exs
 ADD mix.lock /home/app/mix.lock
 RUN echo Y | mix deps.get -y
 ADD . /home/app
+RUN mix compile
 #
 
 # Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+# CMD ["/sbin/my_init"]
+CMD mix phoenix.server
 
 # ...put your own build instructions here...
 
