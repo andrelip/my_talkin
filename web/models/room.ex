@@ -4,8 +4,8 @@ defmodule Talkin.Room do
   schema "rooms" do
     field :token, :string
     field :private, :boolean, default: false
-    field :key, Geo.Geometry
-    # field :location, :geometry
+    field :key, :string
+    field :location, Geo.Geometry
 
     timestamps()
   end
