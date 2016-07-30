@@ -27,5 +27,7 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 import socket from "./socket"
-import Gossip from "./gossip"
-Gossip.init(socket)
+// import Gossip from "./gossip"
+import ChannelList from "./channel_list"
+// Gossip.init(socket)
+ChannelList.init(socket)

@@ -23,4 +23,20 @@ defmodule Talkin.Room do
   def list do
     Repo.all(Talkin.Room)
   end
+
+  def list_as_json do
+    list
+    |> Enum.map(&(Talkin.User.take_from_list(&1)))
+    |> Poison.encode!
+  end
+
+  def take_public_info(item) do
+    Map.take(item, [:token, :private, :location])
+  end
+
+  def list_as_json do
+    list
+    |> Enum.map(&(Talkin.User.take_from_list(&1)))
+    |> Poison.encode!
+  end
 end

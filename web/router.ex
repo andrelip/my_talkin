@@ -18,6 +18,12 @@ defmodule Talkin.Router do
     post "/facebook/login", API.Facebook.AuthController, :login
   end
 
+  scope "/", Talkin do
+    pipe_through :browser # Use the default browser stack
+
+    get "/", ChatController, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Talkin do
   #   pipe_through :api

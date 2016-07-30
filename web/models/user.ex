@@ -1,7 +1,7 @@
 defmodule Talkin.User do
   use Talkin.Web, :model
   alias Talkin.Repo
-  
+
   schema "users" do
     field :uid, :string
     field :name, :string
@@ -24,6 +24,16 @@ defmodule Talkin.User do
 
   def list do
     Repo.all(Talkin.User)
+  end
+
+  def list_as_json do
+    list
+    |> Enum.map(&(Talkin.User.take_public_info(&1)))
+    |> Poison.encode!
+  end
+
+  def take_public_info(item) do
+      Map.take(item, [:uid, :name])
   end
 
   defp random_token do

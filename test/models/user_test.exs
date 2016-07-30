@@ -19,4 +19,8 @@ defmodule Talkin.UserTest do
   test "list all the users in a range" do
     assert User.list == []
   end
+
+  test "list as json" do
+    assert User.list_as_json == "[]"
+  end
 end

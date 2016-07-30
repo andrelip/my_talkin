@@ -3,6 +3,7 @@ defmodule Talkin.UserSocket do
 
     ## Channels
     channel "rooms:*", Talkin.RoomChannel
+    channel "users:*", Talkin.UserChannel
 
     ## Transports
     transport :websocket, Phoenix.Transports.WebSocket
