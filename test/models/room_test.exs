@@ -3,7 +3,7 @@ defmodule Talkin.RoomTest do
 
   alias Talkin.Room
 
-  @valid_attrs %{key: "some content", private: true, token: "somesdadsadtent",
+  @valid_attrs %{name: "room 1", key: "some content", private: true, token: "somesdadsadtent",
                  location: Geo.WKT.decode("POINT(30 -90)")}
   @invalid_attrs %{}
 

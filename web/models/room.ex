@@ -3,6 +3,7 @@ defmodule Talkin.Room do
   alias Talkin.Repo
 
   schema "rooms" do
+    field :name, :string
     field :token, :string
     field :private, :boolean, default: false
     field :key, :string
@@ -16,8 +17,8 @@ defmodule Talkin.Room do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:token, :private, :key, :location])
-    |> validate_required([:token, :private, :key, :location])
+    |> cast(params, [:name, :token, :private, :key, :location])
+    |> validate_required([:name, :token, :location])
   end
 
   def list do
