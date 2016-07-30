@@ -3,9 +3,10 @@ defmodule Talkin.Repo.Migrations.CreateRoom do
 
   def change do
     create table(:rooms) do
-      add :token, :string
+      add :token, :string, size: 16
       add :private, :boolean, default: false, null: false
       add :key, :string
+      add :location, :geometry
 
       timestamps()
     end
