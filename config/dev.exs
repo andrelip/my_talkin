@@ -40,4 +40,5 @@ config :talkin, Talkin.Repo,
   password: "pass",
   database: "talkin_dev",
   hostname: "db",
-  pool_size: 10
+  pool_size: 10,
+  extensions: [{Geo.PostGIS.Extension, library: Geo}]

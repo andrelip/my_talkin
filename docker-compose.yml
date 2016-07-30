@@ -10,7 +10,7 @@ services:
     depends_on:
      - db
   db:
-    image: postgres
+    image: mdillon/postgis # database need to be created with postgres image
     ports:
       - "6000:5432"
     volumes:
