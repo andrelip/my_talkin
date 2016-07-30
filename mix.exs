@@ -39,7 +39,8 @@ defmodule Talkin.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:httpotion, "~> 3.0.0"},
-     {:oauth2, "~> 0.6"}]
+     {:oauth2, "~> 0.6"},
+     {:secure_random, "~> 0.5"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
