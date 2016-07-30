@@ -26,11 +26,6 @@ defmodule Talkin.UserChannel do
         broadcast! socket, "users:new:msg", %{user: msg["user"], body: msg["body"]}
         {:reply, {:ok, %{msg: msg["body"]}}, assign(socket, :user, msg["user"])}
     end
-
-    def handle_in("users:new:msg", msg, socket) do
-        broadcast! socket, "users:new:msg", %{user: msg["user"], body: msg["body"]}
-        {:reply, {:ok, %{msg: msg["body"]}}, assign(socket, :user, msg["user"])}
-    end
     # [BROADCAST] Talkin.Endpoint.broadcast "rooms:lobby", "new:msg", %{user: "andre", body: "iex"}
     # [BROADCAST] Talkin.Endpoint.broadcast "rooms:lobby", "channel:list", %{user: "andre", body: "iex"}
 end
