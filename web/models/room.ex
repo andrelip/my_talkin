@@ -15,7 +15,7 @@ defmodule Talkin.Room do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:token, :private, :key])
-    |> validate_required([:token, :private, :key])
+    |> cast(params, [:token, :private, :key, :location])
+    |> validate_required([:token, :private, :key, :location])
   end
 end

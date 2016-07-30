@@ -3,7 +3,8 @@ defmodule Talkin.RoomTest do
 
   alias Talkin.Room
 
-  @valid_attrs %{key: "some content", private: true, token: "some content"}
+  @valid_attrs %{key: "some content", private: true, token: "somesdadsadtent",
+                 location: Geo.WKT.decode("POINT(30 -90)")}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

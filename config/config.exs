@@ -25,3 +25,11 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+config :talkin, Talkin.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgresql",
+  password: "pass",
+  hostname: "db",
+  pool_size: 10,
+  extensions: [{Geo.PostGIS.Extension, library: Geo}]
