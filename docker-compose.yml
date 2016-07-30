@@ -3,7 +3,7 @@ services:
   web:
     build: .
     ports:
-     - "4000:4000"
+     - "80:4000"
     volumes:
      - .:/home/app
      - /home/rl1/phoenix_examples:/home/app/phoenix_examples
