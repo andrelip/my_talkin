@@ -3,7 +3,8 @@ defmodule Talkin.API.Facebook.AuthController do
   alias Talkin.User.FacebookCreation
 
   def login(conn, %{"access_token" => access_token}) do
-    FacebookCreation.find_or_create_user_by_access_token(access_token)
+    oauth_token = OAuth2.AccessToken.new(access_token, %OAuth2.Client{})
+    FacebookCreation.find_or_create_user_by_access_token(oauth_token)
     |> response(conn)
   end
 

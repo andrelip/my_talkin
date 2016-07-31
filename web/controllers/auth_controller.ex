@@ -8,6 +8,8 @@ defmodule Talkin.AuthController do
 
   def facebook_callback(conn, %{"code" => code}) do
     oauth_token = Facebook.get_token!(code: code)
+    require IEx
+    IEx.pry
     user = FacebookCreation.find_or_create_user_by_access_token(oauth_token)
     case user do
       {:error, changeset} ->
