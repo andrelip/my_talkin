@@ -3,7 +3,6 @@ defmodule Talkin.API.Facebook.AuthController do
 
   alias Talkin.User
   alias Talkin.UserSession
-  require IEx
 
   def login(conn, %{"access_token" => access_token}) do
     find_or_create_user_by_access_token(access_token)

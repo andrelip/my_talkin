@@ -17,8 +17,9 @@ defmodule Talkin.Room do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :token, :private, :key, :location])
-    |> validate_required([:name, :token, :location])
+    |> cast(params, [:name, :private, :key, :location])
+    |> validate_required([:name])
+    |> put_change(:token, generate_token)
   end
 
   def list do
@@ -39,5 +40,9 @@ defmodule Talkin.Room do
     list
     |> Enum.map(&(Talkin.User.take_from_list(&1)))
     |> Poison.encode!
+  end
+
+  defp generate_token do
+    SecureRandom.urlsafe_base64(16) |> String.slice(1..16)
   end
 end

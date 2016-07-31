@@ -16,6 +16,7 @@ defmodule Talkin.Router do
   scope "/api", Talkin do
     pipe_through :api
     post "/facebook/login", API.Facebook.AuthController, :login
+    get "/rooms", API.RoomController, :create
   end
 
   scope "/", Talkin do

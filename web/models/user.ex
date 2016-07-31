@@ -8,6 +8,7 @@ defmodule Talkin.User do
     field :oauth_token, :string
     field :token, :string
     field :oauth_expires_at, Ecto.DateTime
+    has_many :sessions, Talkin.UserSession
 
     timestamps()
   end
