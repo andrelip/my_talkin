@@ -1,6 +1,6 @@
 class Gossip {
 
-    static init(socket){
+    static init(socket, user_token){
     var $status    = $("#status")
     var $messages  = $("#messages")
     var $input     = $("#message-input")
@@ -10,7 +10,7 @@ class Gossip {
     socket.onError( ev => console.log("ERROR", ev) )
     socket.onClose( e => console.log("CLOSE", e))
 
-    var chan = socket.channel("rooms:kdqYmhBWkdneWtJN", {user_token: "GVPWkhQSHhUQmVlS"})
+    var chan = socket.channel("rooms:kdqYmhBWkdneWtJN", {user_token: user_token})
     chan.join()
         .receive("ignore", () => console.log("auth error"))
         .receive("ok", () => console.log("join ok"))

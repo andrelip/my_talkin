@@ -7,6 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>My Chat App</title>
+    <script type="text/javascript">
+       var gon = {user_token: "<%= @current_user.token %>"}
+    </script>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 </head>
 <body>
