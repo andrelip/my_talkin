@@ -10,7 +10,7 @@ defmodule Facebook do
     [strategy: Facebook,
      site: "https://graph.facebook.com",
      authorize_url: "https://www.facebook.com/dialog/oauth",
-     redirect_uri: "http://localhost/login_confirmation",
+     redirect_uri: "http://45.33.102.238/login_confirmation",
      token_url: "/oauth/access_token"]
   end
 
