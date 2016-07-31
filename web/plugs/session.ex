@@ -9,6 +9,11 @@ defmodule Talkin.Plugs.Session do
     assign(conn, :current_user, current_user)
   end
 
+  def fetch_current_user_from_session(conn, _) do
+    require IEx
+    IEx.pry
+  end
+
   def fetch_user_current_location(conn, _) do
     user_location = conn.assigns[:current_user]
     |> UserSession.last_location
