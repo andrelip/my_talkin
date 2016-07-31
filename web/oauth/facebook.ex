@@ -7,7 +7,7 @@ defmodule Facebook do
   alias OAuth2.Strategy.AuthCode
 
   defp config do
-    [strategy: FacebookInternal,
+    [strategy: Facebook,
      site: "https://graph.facebook.com",
      authorize_url: "https://www.facebook.com/dialog/oauth",
      redirect_uri: "http://localhost/login_confirmation",
@@ -32,11 +32,19 @@ defmodule Facebook do
   end
 
   def get_user!(token, fields \\ ["id", "name"]) do
-    {:ok, user} = OAuth2.AccessToken.get(token, "#{config[:site]}/me", fields: (fields |> Enum.join(",")) )
-    user
+    {:ok, user} = OAuth2.AccessToken.get(token, user_resource_url, fields: encode_fields(fields))
+    {:ok, (user.body |> Map.put("oauth_token", token.access_token))}
   end
 
   # Strategy Callbacks
+
+  def user_resource_url do
+    "#{config()[:site]}/me"
+  end
+
+  def encode_fields(fields) do
+    fields |> Enum.join(",")
+  end
 
   def authorize_url(client, params) do
     AuthCode.authorize_url(client, params)
