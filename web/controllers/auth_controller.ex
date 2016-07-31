@@ -19,4 +19,11 @@ defmodule Talkin.AuthController do
         conn |> redirect(to: "/") |> halt()
     end
   end
+
+  def logout(conn, _params) do
+    conn
+    |> put_flash(:info, "You have been logged out!")
+    |> configure_session(drop: true)
+    |> redirect(to: "/")
+  end
 end

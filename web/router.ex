@@ -23,6 +23,7 @@ defmodule Talkin.Router do
     pipe_through :browser # Use the default browser stack
     get "/login", AuthController, :facebook_login
     get "/login_confirmation", AuthController, :facebook_callback
+    get "/logout", AuthController, :logout
 
     get "/", ChatController, :index
   end
