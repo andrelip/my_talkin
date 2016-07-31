@@ -10,7 +10,7 @@ class Gossip {
     socket.onError( ev => console.log("ERROR", ev) )
     socket.onClose( e => console.log("CLOSE", e))
 
-    var chan = socket.channel("rooms:lobby", {})
+    var chan = socket.channel("rooms:kdqYmhBWkdneWtJN", {user_token: "GVPWkhQSHhUQmVlS"})
     chan.join()
         .receive("ignore", () => console.log("auth error"))
         .receive("ok", () => console.log("join ok"))
