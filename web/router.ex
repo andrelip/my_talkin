@@ -21,6 +21,8 @@ defmodule Talkin.Router do
 
   scope "/", Talkin do
     pipe_through :browser # Use the default browser stack
+    get "/login", AuthController, :facebook_login
+    get "/login_confirmation", AuthController, :facebook_callback
 
     get "/", ChatController, :index
   end

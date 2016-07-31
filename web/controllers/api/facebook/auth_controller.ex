@@ -36,7 +36,7 @@ defmodule Talkin.API.Facebook.AuthController do
   end
 
   defp find_by_uid_or_create(access_token) do
-    Facebook.get_user(access_token)
+    Facebook.get_user!(access_token)
     |> find_by_uid_or_create
   end
 
