@@ -19,23 +19,21 @@ class ChannelList {
     chan.onClose(e => console.log("channel closed", e))
 
     chan.on("new:channel", msg => {
-        console.log(msg)
-        msg["body"] = {user: msg["user"], rooms: msg["room"]}
-        $messages.append(this.messageTemplate(msg))
+        $messages.append(this.newRoomTemplate(msg))
         scrollTo(0, document.body.scrollHeight)
     })
 
     chan.on("users:load_content", msg => {
         console.log(msg)
         msg["body"] = {user: msg["user"], rooms: msg["rooms"]}
-        $messages.append(this.messageTemplate(msg))
+        $messages.append(this.multipleRoomsTemplate(msg))
         scrollTo(0, document.body.scrollHeight)
     })
     }
 
     static sanitize(html){ return $("<div/>").text(html).html() }
 
-    static messageTemplate(msg){
+    static multipleRoomsTemplate(msg){
         let username = this.sanitize(msg.user || "anonymous")
         let channel_list = msg.rooms
         var text = ""
@@ -43,6 +41,14 @@ class ChannelList {
           text = text + `<p>${ChannelList.sanitize(m.name)} - ${ChannelList.sanitize(m.token)}</p>\n`
         })
         console.log(text)
+        return(text)
+    }
+
+    static newRoomTemplate(msg){
+        let username = this.sanitize(msg.user || "anonymous")
+        let channel_list = msg.room
+        let content = JSON.parse(channel_list)
+        var text = `<p>${ChannelList.sanitize(content.name)} - ${ChannelList.sanitize(content.token)}</p>`
         return(text)
     }
 

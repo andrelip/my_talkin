@@ -32,6 +32,12 @@ defmodule Talkin.Room do
     |> Poison.encode!
   end
 
+  def display_as_json(room) do
+    room
+    |> take_public_info
+    |> Poison.encode!
+  end
+
   def take_public_info(item) do
     Map.take(item, [:name, :token, :private, :location])
     |> Map.drop([:location])

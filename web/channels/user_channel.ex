@@ -33,11 +33,8 @@ defmodule Talkin.UserChannel do
       {:reply, {:ok, %{msg: msg["body"]}}, assign(socket, :user, msg["user"])}
     end
 
-    def handle_in("new:channel", msg, socket) do
-      require IEx
-      IEx.pry
-      broadcast! socket, "users:new_channel", %{ user: msg.user, rooms: [msg.room] }
-      {:reply, {:ok, %{msg: msg["body"]}}, assign(socket, :user, msg["user"])}
+    def handle_in("users:new:channel", msg, socket) do
+      broadcast! socket, "new:channel", %{ user: msg.user, room: msg.room }
     end
     # [BROADCAST] Talkin.Endpoint.broadcast "rooms:lobby", "new:msg", %{user: "andre", body: "iex"}
     # [BROADCAST] Talkin.Endpoint.broadcast "rooms:lobby", "channel:list", %{user: "andre", body: "iex"}

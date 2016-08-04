@@ -11,10 +11,14 @@ defmodule Talkin.API.RoomController do
     changeset = Room.changeset(%Room{}, params |> Map.put("location", user_location))
     case Repo.insert(changeset) do
       {:ok, room} ->
-        Talkin.Endpoint.broadcast("users:lJieWRJckxWNEhyb", "new:channel", %{user: "System", rooms: room})
-        render(conn, "room.json", room)
+         notify_and_render(conn, room)
       {:error, changeset} ->
         render(conn, "error.json", changeset)
     end
+  end
+
+  defp notify_and_render(conn, room) do
+    Talkin.Endpoint.broadcast("users:0RWVmc4Y0d3c1huc", "new:channel", %{ user: "System", room: Talkin.Room.display_as_json(room) })
+    render(conn, "room.json", room)
   end
 end
