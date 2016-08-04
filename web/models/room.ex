@@ -41,6 +41,7 @@ defmodule Talkin.Room do
   def take_public_info(item) do
     Map.take(item, [:name, :token, :private, :location])
     |> Map.drop([:location])
+    |> Map.put(:location, Geo.JSON.encode(item.location))
   end
 
   defp generate_token do

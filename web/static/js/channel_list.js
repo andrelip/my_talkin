@@ -37,8 +37,9 @@ class ChannelList {
         let username = this.sanitize(msg.user || "anonymous")
         let channel_list = msg.rooms
         var text = ""
+        channel_list
         JSON.parse(channel_list).forEach(m => {
-          text = text + `<p>${ChannelList.sanitize(m.name)} - ${ChannelList.sanitize(m.token)}</p>\n`
+          text = text + `<p>${ChannelList.sanitize(m.name)} - ${ChannelList.sanitize(m.token)} - lat: ${m.location.coordinates[0]} long: ${m.location.coordinates[1]}</p>\n`
         })
         console.log(text)
         return(text)
@@ -48,7 +49,7 @@ class ChannelList {
         let username = this.sanitize(msg.user || "anonymous")
         let channel_list = msg.room
         let content = JSON.parse(channel_list)
-        var text = `<p>${ChannelList.sanitize(content.name)} - ${ChannelList.sanitize(content.token)}</p>`
+        var text = `<p>${ChannelList.sanitize(content.name)} - ${ChannelList.sanitize(content.token)} - ${content.location.coordinates[0]} ${content.location.coordinates[1]}</p>`
         return(text)
     }
 
