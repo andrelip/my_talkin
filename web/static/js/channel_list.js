@@ -1,6 +1,6 @@
 class ChannelList {
 
-    static init(socket){
+    static init(socket, user_token){
     var $status    = $("#status")
     var $messages  = $("#messages")
     var $input     = $("#message-input")
@@ -10,7 +10,7 @@ class ChannelList {
     socket.onError( ev => console.log("ERROR", ev) )
     socket.onClose( e => console.log("CLOSE", e))
 
-    var chan = socket.channel("users:EpVZFJhM0VGRXovc", {})
+    var chan = socket.channel(`users:${user_token}`, {})
     chan.join()
         .receive("ignore", () => console.log("auth error"))
         .receive("ok", () => console.log("join ok"))
@@ -18,37 +18,32 @@ class ChannelList {
     chan.onError(e => console.log("something went wrong", e))
     chan.onClose(e => console.log("channel closed", e))
 
-    $input.off("keypress").on("keypress", e => {
-        if (e.keyCode == 13) {
-            chan.push("users:new:msg", {user: $username.val(), body: $input.val()}, 10000)
-            $input.val("")
-        }
-    })
-
-    chan.on("users:new:msg", msg => {
+    chan.on("new:channel", msg => {
+        console.log(msg)
+        msg["body"] = {user: msg["user"], rooms: msg["room"]}
         $messages.append(this.messageTemplate(msg))
         scrollTo(0, document.body.scrollHeight)
     })
 
     chan.on("users:load_content", msg => {
-        msg["body"] = {users: msg["users"], rooms: msg["rooms"]}
+        console.log(msg)
+        msg["body"] = {user: msg["user"], rooms: msg["rooms"]}
         $messages.append(this.messageTemplate(msg))
         scrollTo(0, document.body.scrollHeight)
     })
-
-    chan.on("users:entered", msg => {
-            var username = this.sanitize(msg.user || "anonymous")
-            $messages.append(`<br/><i>[${username} entered]</i>`)
-        })
     }
 
     static sanitize(html){ return $("<div/>").text(html).html() }
 
     static messageTemplate(msg){
         let username = this.sanitize(msg.user || "anonymous")
-        let body     = this.sanitize(msg.body)
-
-        return(`<p><a href='#'>[${username}]</a>&nbsp; ${body}</p>`)
+        let channel_list = msg.rooms
+        var text = ""
+        JSON.parse(channel_list).forEach(m => {
+          text = text + `<p>${ChannelList.sanitize(m.name)} - ${ChannelList.sanitize(m.token)}</p>\n`
+        })
+        console.log(text)
+        return(text)
     }
 
 }

@@ -20,6 +20,8 @@ defmodule Talkin.API.RoomView do
 
   defp render_detail({message, values}) do
     Enum.reduce values, message, fn {k, v}, acc ->
+      require IEx
+      IEx.pry
       String.replace(acc, "%{#{k}}", to_string(v))
     end
   end

@@ -50,7 +50,9 @@ defmodule Talkin.User.FacebookCreation do
   end
 
   def create_session(conn, user) do
-    %{params: %{"lat" => lat, "long" => long}} = conn
+    # %{params: %{"lat" => lat, "long" => long}} = conn
+    lat = 85
+    long = 85
     changeset = UserSession.changeset(%UserSession{},
                             %{"user_id" => user.id,
                               "location" => Geo.WKT.decode("POINT(#{lat} #{long})")})

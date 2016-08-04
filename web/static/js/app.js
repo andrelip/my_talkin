@@ -28,6 +28,8 @@ import "phoenix_html"
 
 import socket from "./socket"
 import Gossip from "./gossip"
+import ChannelList from "./channel_list"
 // import ChannelList from "./channel_list"
 Gossip.init(socket, gon.user_token)
+ChannelList.init(socket, gon.user_token)
 // ChannelList.init(socket)
