@@ -18,7 +18,7 @@ class ChannelList {
     chan.onError(e => console.log("something went wrong", e))
     chan.onClose(e => console.log("channel closed", e))
 
-    chan.on("new:channel", msg => {
+    chan.on("users:new:channel", msg => {
         $messages.append(this.newRoomTemplate(msg))
         scrollTo(0, document.body.scrollHeight)
     })

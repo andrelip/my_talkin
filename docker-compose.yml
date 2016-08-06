@@ -18,5 +18,5 @@ services:
      - /talkin/db/var/log:/var/log/postgresql
      - /talkin/db/var/lib/postgresql:/var/lib/postgresql
     environment:
-     - POSTGRES_USER=postgresql
+     - POSTGRES_USER=postgres
      - POSTGRES_PASSWORD=pass
