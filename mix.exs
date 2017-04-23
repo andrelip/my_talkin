@@ -10,7 +10,15 @@ defmodule Talkin.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases(),
-     deps: deps()]
+     deps: deps(),
+
+     # Docs
+     name: "Talkin",
+     source_url: "https://github.com/andre_lip/talkin",
+     homepage_url: "http://talkin.io",
+     docs: [main: "Talkin", # The main page in the docs
+            logo: "web/static/assets/images/talkin-logo-docs.png",
+            extras: ["README.md"]]]
   end
 
   # Configuration for the OTP application.
@@ -41,7 +49,11 @@ defmodule Talkin.Mixfile do
      {:httpotion, "~> 3.0"},
      {:oauth2, "~> 0.9"},
      {:secure_random, "~> 0.5"},
-     {:geo, "~> 1.4"}]
+     {:geo, "~> 1.4"},
+
+     {:credo, ">= 0.0.0", only: [:dev, :test]}, # Static code analysis
+     {:ex_doc, "~> 0.15", only: [:dev]}  # Documentation
+     ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
